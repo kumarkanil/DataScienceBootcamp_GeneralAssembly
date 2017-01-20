@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="alcohol <= 10.625\nmse = 0.7625\nsamples = 6497\nvalue = 5.8184"] ;
+1 [label="volatile acidity <= 0.2375\nmse = 0.5555\nsamples = 3866\nvalue = 5.5285"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="volatile acidity <= 0.2075\nmse = 0.6018\nsamples = 1056\nvalue = 5.9157"] ;
+1 -> 2 ;
+3 [label="mse = 0.6409\nsamples = 661\nvalue = 6.0242"] ;
+2 -> 3 ;
+4 [label="mse = 0.4838\nsamples = 395\nvalue = 5.7342"] ;
+2 -> 4 ;
+5 [label="alcohol <= 9.85\nmse = 0.4605\nsamples = 2810\nvalue = 5.3829"] ;
+1 -> 5 ;
+6 [label="mse = 0.3695\nsamples = 1855\nvalue = 5.2868"] ;
+5 -> 6 ;
+7 [label="mse = 0.5844\nsamples = 955\nvalue = 5.5696"] ;
+5 -> 7 ;
+8 [label="alcohol <= 11.7417\nmse = 0.7616\nsamples = 2631\nvalue = 6.2444"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="volatile acidity <= 0.4425\nmse = 0.7426\nsamples = 1487\nvalue = 6.035"] ;
+8 -> 9 ;
+10 [label="mse = 0.6938\nsamples = 1236\nvalue = 6.1319"] ;
+9 -> 10 ;
+11 [label="mse = 0.7088\nsamples = 251\nvalue = 5.5578"] ;
+9 -> 11 ;
+12 [label="free sulfur dioxide <= 21.5\nmse = 0.6553\nsamples = 1144\nvalue = 6.5166"] ;
+8 -> 12 ;
+13 [label="mse = 0.7116\nsamples = 402\nvalue = 6.2637"] ;
+12 -> 13 ;
+14 [label="mse = 0.5714\nsamples = 742\nvalue = 6.6536"] ;
+12 -> 14 ;
+}

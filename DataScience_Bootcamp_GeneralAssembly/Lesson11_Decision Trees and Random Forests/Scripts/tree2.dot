@@ -1,0 +1,16 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="alcohol <= 11.675\ngini = 0.0591\nsamples = 6497\nvalue = [6299, 198]"] ;
+1 [label="volatile acidity <= 0.2425\ngini = 0.0292\nsamples = 5271\nvalue = [5193, 78]"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="gini = 0.0614\nsamples = 1766\nvalue = [1710, 56]"] ;
+1 -> 2 ;
+3 [label="gini = 0.0125\nsamples = 3505\nvalue = [3483, 22]"] ;
+1 -> 3 ;
+4 [label="free sulfur dioxide <= 50.5\ngini = 0.1766\nsamples = 1226\nvalue = [1106, 120]"] ;
+0 -> 4 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+5 [label="gini = 0.1631\nsamples = 1172\nvalue = [1067, 105]"] ;
+4 -> 5 ;
+6 [label="gini = 0.4012\nsamples = 54\nvalue = [39, 15]"] ;
+4 -> 6 ;
+}

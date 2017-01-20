@@ -1,0 +1,1502 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 14">
+<meta name=Originator content="Microsoft Word 14">
+<link rel=File-List href="testing_files/filelist.xml">
+<link rel=Edit-Time-Data href="testing_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Testing the assumptions of linear regression</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Bob Nau</o:Author>
+  <o:LastAuthor>Bob Nau</o:LastAuthor>
+  <o:Revision>124</o:Revision>
+  <o:TotalTime>467</o:TotalTime>
+  <o:Created>2014-07-24T13:36:00Z</o:Created>
+  <o:LastSaved>2015-05-06T14:24:00Z</o:LastSaved>
+  <o:Pages>9</o:Pages>
+  <o:Words>3952</o:Words>
+  <o:Characters>22528</o:Characters>
+  <o:Company>Duke University</o:Company>
+  <o:Lines>187</o:Lines>
+  <o:Paragraphs>52</o:Paragraphs>
+  <o:CharactersWithSpaces>26428</o:CharactersWithSpaces>
+  <o:Version>14.00</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<link rel=themeData href="testing_files/themedata.thmx">
+<link rel=colorSchemeMapping href="testing_files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Print</w:View>
+  <w:Zoom>90</w:Zoom>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SplitPgBreakAndParaMark/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="267">
+  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
+  <w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="39" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Table Grid"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-520081665 -1073717157 41 0 66047 0;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1593833729 1073750107 16 0 415 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+h1
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 1 Char";
+	mso-style-next:Normal;
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan lines-together;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:14.0pt;
+	font-family:"Calibri Light","sans-serif";
+	mso-ascii-font-family:"Calibri Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"Calibri Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#2E74B5;
+	mso-themecolor:accent1;
+	mso-themeshade:191;
+	mso-font-kerning:0pt;
+	font-weight:bold;}
+h2
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 2 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	mso-outline-level:2;
+	font-size:18.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	font-weight:bold;}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"Footnote Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+a:link, span.MsoHyperlink
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+pre
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:45.8pt 91.6pt 137.4pt 183.2pt 229.0pt 274.8pt 320.6pt 366.4pt 412.2pt 458.0pt 503.8pt 549.6pt 595.4pt 641.2pt 687.0pt 732.8pt;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;}
+span.MsoPlaceholderText
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	color:gray;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 1";
+	mso-ansi-font-size:14.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:"Calibri Light","sans-serif";
+	mso-ascii-font-family:"Calibri Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"Calibri Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#2E74B5;
+	mso-themecolor:accent1;
+	mso-themeshade:191;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-noshow:yes;
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 2";
+	mso-ansi-font-size:13.0pt;
+	mso-bidi-font-size:13.0pt;
+	font-family:"Calibri Light","sans-serif";
+	mso-ascii-font-family:"Calibri Light";
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:"Calibri Light";
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#2E74B5;
+	mso-themecolor:accent1;
+	mso-themeshade:191;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";}
+span.FootnoteTextChar
+	{mso-style-name:"Footnote Text Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Footnote Text";
+	font-family:"Times New Roman","serif";
+	mso-ascii-font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Balloon Text";
+	mso-ansi-font-size:8.0pt;
+	mso-bidi-font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-ascii-font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Tahoma;
+	mso-bidi-font-family:Tahoma;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:144395593;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1964392600 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:4.0in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:4.5in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:5.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:5.5in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:6.0in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:6.5in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:7.0in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:7.5in;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:8.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman","serif";}
+</style>
+<![endif]-->
+<meta name=AUTHOR content="Fuqua School of Business">
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=WordSection1>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt;mso-outline-level:2'><script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script><!--[if gte vml 1]><v:shapetype id="_x0000_t75" coordsize="21600,21600"
+ o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f"
+ stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="Picture_x0020_12" o:spid="_x0000_s1026" type="#_x0000_t75"
+ href="411home.htm" style='position:absolute;left:0;text-align:left;
+ margin-left:14.4pt;margin-top:0;width:210.25pt;height:109.45pt;z-index:251657728;
+ visibility:visible;mso-wrap-style:square;mso-width-percent:0;
+ mso-height-percent:0;mso-wrap-distance-left:9pt;mso-wrap-distance-top:0;
+ mso-wrap-distance-right:9pt;mso-wrap-distance-bottom:0;
+ mso-position-horizontal:absolute;mso-position-horizontal-relative:text;
+ mso-position-vertical:absolute;mso-position-vertical-relative:text;
+ mso-width-percent:0;mso-height-percent:0;mso-width-relative:margin;
+ mso-height-relative:margin' o:button="t">
+ <v:imagedata src="411logo.gif"/>
+</v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout;position:
+absolute;z-index:251657728;left:0px;margin-left:19px;margin-top:0px;width:280px;
+height:146px'><a href="411home.htm"><img border=0 width=280 height=146
+src=411logo.gif title="" v:shapes="Picture_x0020_12"></a></span><![endif]><a
+name=top></a><b style='mso-bidi-font-weight:normal'><span style='font-size:
+10.0pt;font-family:"Verdana","sans-serif";color:#000099'>Linear regression
+models<o:p></o:p></span></b></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt;mso-outline-level:2'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt;mso-outline-level:2'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a
+href="Notes_on_linear_regression_analysis--Robert_Nau.pdf">Notes on linear
+regression analysis (pdf file)</a><span style='color:blue'><o:p></o:p></span></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt;mso-outline-level:2'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif";color:blue'><a href="regintro.htm">Introduction
+to linear regression analysis</a></span><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'> <o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt;mso-outline-level:1'><span class=MsoHyperlink><a
+href="mathreg.htm"><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Mathematics
+of simple regression</span></a></span><span style='font-size:10.0pt;font-family:
+"Verdana","sans-serif";color:blue'><o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt;mso-outline-level:1'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif";color:blue'>Regression examples<o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.75in;
+margin-bottom:.0001pt;text-indent:-.25in;mso-outline-level:1;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol;color:#0000BF'><span style='mso-list:Ignore'>&middot;<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+color:blue'><a href="regexbaseball.htm">Baseball batting averages</a></span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif";color:#0000BF'><o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.75in;
+margin-bottom:.0001pt;text-indent:-.25in;mso-outline-level:2;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol;color:blue'><span style='mso-list:Ignore'>&middot;<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+color:blue'><a href="regex.htm">Beer sales vs. price, part 1: descriptive
+analysis</a><o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.75in;
+margin-bottom:.0001pt;text-indent:-.25in;mso-outline-level:2;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol;color:blue'><span style='mso-list:Ignore'>&middot;<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+color:blue'><a href="regex2.htm">Beer sales vs. price, part 2: fitting a simple
+model</a><o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.75in;
+margin-bottom:.0001pt;text-indent:-.25in;mso-outline-level:1;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol;color:blue'><span style='mso-list:Ignore'>&middot;<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+color:blue'><a href="regex3.htm">Beer sales vs. price, part 3: transformations
+of variables</a><o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.75in;
+margin-bottom:.0001pt;text-indent:-.25in;mso-outline-level:1;mso-list:l0 level1 lfo2'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol;color:#0000BF'><span style='mso-list:Ignore'>&middot;<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+color:#0000BF'><a href="regex4.htm"><span style='color:#0000BF'>Beer sales vs.
+price, part 4: additional predictors</span></a><o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.75in;
+margin-bottom:.0001pt;text-indent:-.25in;mso-outline-level:1;mso-list:l1 level1 lfo2'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:Symbol;mso-fareast-font-family:Symbol;
+mso-bidi-font-family:Symbol;color:#0000BF'><span style='mso-list:Ignore'>&middot;<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";
+color:blue'><a href="NC_natural_gas_consumption_analysis.xlsx">NC natural gas consumption vs. temperature</a></span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif";color:#0000BF'><o:p></o:p></span></p>
+
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt;mso-outline-level:2'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a href="411regou.htm">What to look for in
+regression output</a> <o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt;mso-outline-level:2'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a href="rsquared.htm">What&#8217;s a good
+value for R-squared?</a><br>
+<a href="compare.htm">What's the bottom line? How to compare models</a> <br>
+<span style='color:#AFABAB;mso-themecolor:background2;mso-themeshade:191;
+mso-style-textfill-fill-color:#AFABAB;mso-style-textfill-fill-themecolor:background2;
+mso-style-textfill-fill-alpha:100.0%;mso-style-textfill-fill-colortransforms:
+lumm=75000'><a href="testing.htm"><span style='color:#AFABAB;mso-themecolor:
+background2;mso-themeshade:191;mso-style-textfill-fill-color:#AFABAB;
+mso-style-textfill-fill-themecolor:background2;mso-style-textfill-fill-alpha:
+100.0%;mso-style-textfill-fill-colortransforms:lumm=75000'>Testing the
+assumptions of linear regression</span></a><br>
+</span><a href="regnotes.htm">Additional notes on regression analysis</a> <br>
+<a href="regstep.htm">Stepwise and all-possible-regressions</a><br>
+<a href="Simple_regression_formulas_and_RegressIt_model.xlsx">Excel file with
+simple regression formulas</a><o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt;mso-outline-level:2'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a
+href="Regression_formulas_in_matrix_form.xlsx">Excel file with regression formulas
+in matrix form</a><br style='mso-special-character:line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]><o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt;mso-outline-level:2'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>If you are a PC Excel user, you <i
+style='mso-bidi-font-style:normal'>must </i>check this out:<br>
+<a href="http://regressit.com" target="_blank"
+title="RegressIt Excel add-in for regression">RegressIt: free Excel add-in for
+linear regression and multivariate data analysis</a><o:p></o:p></span></p>
+
+<p style='margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:3.5in;
+margin-bottom:.0001pt'><span style='font-size:14.0pt;font-family:"Verdana","sans-serif"'><o:p>&nbsp;</o:p></span></p>
+
+<h1 style='margin-top:0in'><span style='font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman";color:#000099'>Regression
+diagnostics:<span style='mso-spacerun:yes'>&nbsp; </span>testing the assumptions
+of linear regression</span><span style='font-family:"Verdana","sans-serif";
+mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></h1>
+
+<h2 align=center style='margin:0in;margin-bottom:.0001pt;text-align:center'><span
+style='font-size:14.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>
+
+<hr size=2 width="100%" align=center>
+
+</span></h2>
+
+<p style='margin:0in;margin-bottom:.0001pt'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a href="#assumptions">Four assumptions of
+regression</a><o:p></o:p></span></p>
+
+<p style='margin:0in;margin-bottom:.0001pt'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a href="#linearity">Testing for linear and
+additivity of predictive relationships</a><o:p></o:p></span></p>
+
+<p style='margin:0in;margin-bottom:.0001pt'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a href="#independence">Testing for
+independence (lack of correlation) of errors</a><o:p></o:p></span></p>
+
+<p style='margin:0in;margin-bottom:.0001pt'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a href="#homoscedasticity">Testing for
+homoscedasticity (constant variance) of errors</a><o:p></o:p></span></p>
+
+<p style='margin:0in;margin-bottom:.0001pt'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'><a href="#normality">Testing for normality
+of the error distribution</a></span><span style='font-size:14.0pt;font-family:
+"Verdana","sans-serif";mso-fareast-font-family:"Times New Roman"'><o:p></o:p></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='font-size:14.0pt;font-family:"Verdana","sans-serif";mso-fareast-font-family:
+"Times New Roman"'>
+
+<hr size=2 width="100%" align=center>
+
+</span></div>
+
+<p><a name=assumptions></a><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>There
+are <b style='mso-bidi-font-weight:normal'>four principal assumptions</b> which
+justify the use of linear regression models for purposes of inference or
+prediction:</span><span style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>(i)
+linearity</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'> and additivity</span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'> of the
+relationship between dependent and independent variables: <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;&nbsp;&nbsp;
+(a) The expected value of dependent variable is a straight-line function of
+each independent variable, holding the others fixed.</span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;&nbsp;&nbsp;
+(b) The slope of that line does not depend on the values of the other
+variables.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;&nbsp;&nbsp;
+(c)<span style='mso-spacerun:yes'>&nbsp; </span>The effects of different
+independent variables on the expected value of the dependent variable are
+additive.</span><span style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>(ii)
+statistical independence</span></b><span style='font-size:10.0pt;font-family:
+"Verdana","sans-serif"'> of the errors (in particular, no correlation between
+consecutive errors in the case of time series data) </span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>(iii)
+homoscedasticity</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+(constant variance) of the errors </span><span style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;&nbsp;&nbsp;
+(a) versus time (in the case of time series data)</span><span style='font-family:
+"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&nbsp;&nbsp;&nbsp;
+(b) versus the predictions <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>(c) versus any independent
+variable</span><span style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>(iv)
+normality</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+of the error distribution. </span><span style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If any of
+these assumptions is violated (i.e., if there are nonlinear relationships
+between dependent and independent variables or the errors exhibit correlation,
+heteroscedasticity, or non-normality), then the forecasts, confidence
+intervals, and scientific insights yielded by a regression model may be (at
+best) inefficient or (at worst) seriously biased or misleading.<span
+style='mso-spacerun:yes'>&nbsp; </span>More details of these assumptions, and
+the justification for them (or not) in particular cases, is given on the <a
+href="http://people.duke.edu/~rnau/regintro.htm">introduction to regression</a>
+page.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Ideally
+your statistical software will automatically provide charts and statistics that
+test whether these assumptions are satisfied for any given model.<span
+style='mso-spacerun:yes'>&nbsp; </span>Unfortunately, many software packages do
+not provide such output by default (additional menu commands must be executed
+or code must be written) and some (such as Excel&#8217;s built-in regression
+add-in) offer only limited options.<span style='mso-spacerun:yes'>&nbsp;
+</span>RegressIt does provide such output and in graphic detail.<span
+style='mso-spacerun:yes'>&nbsp; </span>See <a href="regex2.htm">this page</a>
+for an example of output from a model that violates all of the assumptions
+above, yet is likely to be accepted by a na&iuml;ve user on the basis of a
+large value of R-squared, and see <a href="regex3.htm">this page</a> for an
+example of a model that satisfies the assumptions reasonably well, which is
+obtained from the first one by a nonlinear transformation of variables.<span
+style='mso-spacerun:yes'>&nbsp; </span>The normal quantile plots from those
+models are also shown at the bottom of this page.<span
+style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>You will
+sometimes see additional (or different) assumptions listed, such as &#8220;the
+variables are measured accurately&#8221; or &#8220;the sample is representative
+of the population&#8221;, etc.<span style='mso-spacerun:yes'>&nbsp;
+</span>These are important considerations in any form of statistical modeling,
+and they should be given due attention, although they do not refer to
+properties of the linear regression equation per se.<span
+style='mso-spacerun:yes'>&nbsp;&nbsp; </span><a href="#top">(Return to top of
+page.)</a></span><span style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='mso-fareast-font-family:"Times New Roman"'>
+
+<hr size=2 width="100%" align=center>
+
+</span></div>
+
+<p><a name=linearity></a><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Violations
+of linearity or additivity</span></b><span style='font-size:10.0pt;font-family:
+"Verdana","sans-serif"'> are extremely serious: if you fit a linear model to
+data which are nonlinearly or nonadditively related, your predictions are
+likely to be seriously in error, especially when you extrapolate beyond the
+range of the sample data. </span><span style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>How to
+diagnose</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>:
+nonlinearity is usually most evident in a plot of<b style='mso-bidi-font-weight:
+normal'> <span style='mso-bidi-font-style:italic'>observed versus predicted</span></b><span
+style='mso-bidi-font-style:italic'> <b style='mso-bidi-font-weight:normal'>values</b></span>
+or a plot of <b style='mso-bidi-font-weight:normal'><span style='mso-bidi-font-style:
+italic'>residuals versus predicted values</span></b>, which are a part of
+standard regression output. The points should be symmetrically distributed
+around a diagonal line in the former plot or around horizontal line in the
+latter plot, with a roughly constant variance.<span
+style='mso-spacerun:yes'>&nbsp; </span>(The residual-versus-predicted-plot is
+better than the observed-versus-predicted plot for this purpose, because it
+eliminates the visual distraction of a sloping pattern.)<span
+style='mso-spacerun:yes'>&nbsp; </span>Look carefully for evidence of a
+&quot;bowed&quot; pattern, indicating that the model makes systematic errors
+whenever it is making unusually large or small predictions. In multiple
+regression models, nonlinearity or nonadditivity may also be revealed by
+systematic patterns in plots of the <b style='mso-bidi-font-weight:normal'>residuals
+versus individual independent variables</b>.</span><span style='font-family:
+"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>How to
+fix:</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+consider applying a <i>nonlinear transformation </i>to the dependent and/or
+independent variables <i style='mso-bidi-font-style:normal'>if</i> you can
+think of a transformation that seems appropriate. (Don&#8217;t just make
+something up!) For example, if the data are strictly positive, the log transformation
+is an option.<span style='mso-spacerun:yes'>&nbsp; </span>(The logarithm base
+does not matter--all log functions are same up to linear scaling--although the
+natural log is usually preferred because small changes in the natural log are
+equivalent to percentage changes.<span style='mso-spacerun:yes'>&nbsp;
+</span>See <a href="http://people.duke.edu/~rnau/411log.htm">these notes</a>
+for more details.)<span style='mso-spacerun:yes'>&nbsp; </span>If a log
+transformation is applied to the dependent variable only, this is equivalent to
+assuming that it grows (or decays) exponentially as a function of the
+independent variables.<span style='mso-spacerun:yes'>&nbsp; </span>If a log
+transformation is applied to <i style='mso-bidi-font-style:normal'>both</i> the
+dependent variable and the independent variables, this is equivalent to
+assuming that the effects of the independent variables are <i style='mso-bidi-font-style:
+normal'>multiplicative</i> rather than additive in their original units. This
+means that, on the margin, a small <i style='mso-bidi-font-style:normal'>percentage</i>
+change in one of the independent variables induces a proportional <i
+style='mso-bidi-font-style:normal'>percentage</i> change in the expected value
+of the dependent variable, other things being equal.<span
+style='mso-spacerun:yes'>&nbsp; </span>Models of this kind are commonly used in
+modeling price-demand relationships, as illustrated on the <a
+href="http://people.duke.edu/~rnau/regex3.htm">beer sales example</a> on this
+web site.<span style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Another
+possibility to consider is adding <i style='mso-bidi-font-style:normal'>another
+regressor</i> that is a nonlinear function of one of the other variables. For
+example, if you have regressed Y on X, and the graph of residuals versus
+predicted values suggests a parabolic curve, then it may make sense to regress
+Y on both X and X^2 (i.e., X-squared). The latter transformation is possible
+even when X and/or Y have negative values, whereas logging is not.<span
+style='mso-spacerun:yes'>&nbsp; </span>Higher-order terms of this kind (cubic,
+etc.) might also be considered in some cases.<span
+style='mso-spacerun:yes'>&nbsp; </span>But don&#8217;t get carried away!<span
+style='mso-spacerun:yes'>&nbsp; </span>This sort of &quot;polynomial curve
+fitting&quot; can be a nice way to draw a smooth curve through a wavy pattern
+of points (in fact, it is a trend-line option on scatterplots on Excel), but it
+is usually a terrible way to extrapolate outside the range of the sample
+data.<span style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Finally,
+it may be that you have overlooked some <i style='mso-bidi-font-style:normal'>entirely
+different independent variable </i>that explains or corrects for the nonlinear
+pattern or interactions among variables that you are seeing in your residual
+plots. In that case the shape of the pattern, together with economic or
+physical reasoning, may suggest some likely suspects.<span
+style='mso-spacerun:yes'>&nbsp; </span>For example, if the strength of the
+linear relationship between Y and X<sub>1</sub> depends on the level of some
+other variable X<sub>2</sub>, this could perhaps be addressed by creating a new
+independent variable that is the product of X<sub>1</sub> and X<sub>2</sub>.<span
+style='mso-spacerun:yes'>&nbsp; </span>In the case of time series data, if the
+trend in Y is believed to have changed at a particular point in time, then the
+addition of a <i style='mso-bidi-font-style:normal'>piecewise linear</i> trend
+variable (one whose string of values looks like 0, 0, &#8230;, 0, 1, 2, 3,
+&#8230; ) could be used to fit the kink in the data.<span
+style='mso-spacerun:yes'>&nbsp; </span>Such a variable can be considered as the
+product of a trend variable and a dummy variable.<span
+style='mso-spacerun:yes'>&nbsp; </span>Again, though, you need to beware of
+overfitting the sample data by throwing in artificially constructed variables
+that are poorly motivated.<span style='mso-spacerun:yes'>&nbsp; </span>At the
+end of the day you need to be able to interpret the model and explain (or sell)
+it to others.<span style='mso-spacerun:yes'>&nbsp; </span><a href="#top">(Return
+to top of page.)</a></span><span style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='mso-fareast-font-family:"Times New Roman"'>
+
+<hr size=2 width="100%" align=center>
+
+</span></div>
+
+<p><a name=independence></a><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Violations
+of independence</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+are potentially very serious in <i>time series regression </i>models: serial
+correlation in the errors (i.e., correlation between consecutive errors or errors
+separated by some other number of periods) means that there is room for
+improvement in the model, and extreme serial correlation is often a symptom of
+a badly mis-specified model. Serial correlation (also known as
+autocorrelation&#8221;) is sometimes a byproduct of a violation of the
+linearity assumption, as in the case of a simple (i.e., straight) trend line
+fitted to data which are growing exponentially over time.<span
+style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Independence
+can also be violated in non-time-series models if errors tend to always have
+the same sign under particular conditions, i.e., if the model systematically
+underpredicts or overpredicts what will happen when the independent variables
+have a particular configuration.<span style='mso-spacerun:yes'>&nbsp; </span></span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>How to
+diagnose:</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+The best test for serial correlation is to look at a <b style='mso-bidi-font-weight:
+normal'>residual time series plot </b>(residuals vs. row number) and a <b
+style='mso-bidi-font-weight:normal'>table or plot of</b> <b style='mso-bidi-font-weight:
+normal'>residual <span style='mso-bidi-font-style:italic'>autocorrelations</span></b>.
+(If your software does not provide these by default for time series data, you
+should figure out where in the menu or code to find them.) Ideally, most of the
+residual autocorrelations should fall within the 95% confidence bands around
+zero, which are located at roughly plus-or-minus 2-over-the-square-root-of-n,
+where n is the sample size. Thus, if the sample size is 50, the
+autocorrelations should be between +/- 0.3. If the sample size is 100, they
+should be between +/- 0.2. Pay especially close attention to significant
+correlations at the first couple of lags and in the vicinity of the seasonal
+period, because these are probably not due to mere chance and are also fixable.
+The <i>Durbin-Watson statistic</i> provides a test for significant residual
+autocorrelation at lag 1: the DW stat is approximately equal to 2(1-a) where a
+is the lag-1 residual autocorrelation, so ideally it should be close to
+2.0--say, between 1.4 and 2.6 for a sample size of 50. </span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>How to
+fix:</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+Minor cases of <i>positive </i>serial correlation (say, lag-1 residual
+autocorrelation in the range 0.2 to 0.4, or a Durbin-Watson statistic between
+1.2 and 1.6) indicate that there is some room for fine-tuning in the model.
+Consider adding lags of the dependent variable and/or lags of some of the
+independent variables. Or, if you have an ARIMA+regressor procedure available
+in your statistical software, try adding an AR(1) or MA(1) term to the
+regression model.<span style='mso-spacerun:yes'>&nbsp; </span>An AR(1) term
+adds a lag of the dependent variable to the forecasting equation, whereas an
+MA(1) term adds a lag of the forecast error. If there is significant
+correlation at lag 2, then a 2nd-order lag may be appropriate. </span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If there
+is significant <i>negative</i> correlation in the residuals (lag-1
+autocorrelation more negative than -0.3 or DW stat greater than 2.6), watch out
+for the possibility that you may have <i>overdifferenced</i> some of your
+variables. Differencing tends to drive autocorrelations in the negative
+direction, and too much differencing may lead to artificial patterns of
+negative correlation that lagged variables cannot correct for. </span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If there
+is significant correlation at the <i>seasonal</i> period (e.g. at lag 4 for
+quarterly data or lag 12 for monthly data), this indicates that seasonality has
+not been properly accounted for in the model. Seasonality can be handled in a
+regression model in one of the following ways: (i) <i>seasonally adjust</i> the
+variables (if they are not already seasonally adjusted), or (ii) use <i>seasonal
+lags and/or seasonally differenced variables</i> (caution: be careful not to
+overdifference!), or (iii) add <i>seasonal dummy variables</i> to the model
+(i.e., indicator variables for different seasons of the year, such as MONTH=1
+or QUARTER=2, etc.) The dummy-variable approach enables <i>additive seasonal
+adjustment</i> to be performed as part of the regression model: a different
+additive constant can be estimated for each season of the year. If the
+dependent variable has been logged, the seasonal adjustment is multiplicative.
+(Something else to watch out for: it is possible that although your dependent
+variable is already seasonally adjusted, some of your independent variables may
+not be, causing their seasonal patterns to leak into the forecasts.) </span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><i><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Major
+cases</span></i><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+of serial correlation (a Durbin-Watson statistic well below 1.0,
+autocorrelations well above 0.5) usually indicate a fundamental structural
+problem in the model. You may wish to reconsider the transformations (if any)
+that have been applied to the dependent and independent variables. It may help
+to stationarize all variables through appropriate combinations of differencing,
+logging, and/or deflating. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>To test
+for<b style='mso-bidi-font-weight:normal'> non-time-series violations of
+independence</b>, you can look at plots of the residuals versus independent
+variables or plots of residuals versus row number in situations where the rows
+have been sorted or grouped in some way that depends (only) on the values of
+the independent variables.<span style='mso-spacerun:yes'>&nbsp; </span>The
+residuals should be randomly and symmetrically distributed around zero under
+all conditions, and in particular <b style='mso-bidi-font-weight:normal'>there
+should be no correlation between consecutive errors no matter how the rows are
+sorted</b>, as long as it is on some criterion that does not involve the
+dependent variable.<span style='mso-spacerun:yes'>&nbsp; </span>If this is not
+true, it could be due to a violation of the linearity assumption or due to bias
+that is explainable by omitted variables (say, interaction terms or dummies for
+identifiable conditions).<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'><a
+href="#top">(Return to top of page.)</a></span><span style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='mso-fareast-font-family:"Times New Roman"'>
+
+<hr size=2 width="100%" align=center>
+
+</span></div>
+
+<p><a name=homoscedasticity></a><b><span style='font-size:10.0pt;font-family:
+"Verdana","sans-serif"'>Violations of homoscedasticity</span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'> (which are called
+&quot;heteroscedasticity&quot;) make it difficult to gauge the true standard
+deviation of the forecast errors, usually resulting in confidence intervals
+that are too wide or too narrow. In particular, if the variance of the errors
+is increasing over time, confidence intervals for out-of-sample predictions
+will tend to be unrealistically narrow. Heteroscedasticity may also have the
+effect of giving too much weight to a small subset of the data (namely the
+subset where the error variance was largest) when estimating coefficients. </span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>How to
+diagnose:</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+look at a plot of <b style='mso-bidi-font-weight:normal'><span
+style='mso-bidi-font-style:italic'>residuals versus predicted values</span></b><span
+style='mso-bidi-font-style:italic'> and, in the case of time series data, a
+plot of <b style='mso-bidi-font-weight:normal'>residuals versus time</b></span>.<span
+style='mso-spacerun:yes'>&nbsp; </span>Be alert for evidence of residuals that
+grow larger either as a function of time or as a function of the predicted
+value. To be really thorough, you should also generate plots of <b
+style='mso-bidi-font-weight:normal'>residuals versus independent</b> <b
+style='mso-bidi-font-weight:normal'>variables</b> to look for consistency there
+as well.<span style='mso-spacerun:yes'>&nbsp; </span>Because of imprecision in
+the coefficient estimates, the errors may tend to be <i style='mso-bidi-font-style:
+normal'>slightly</i> larger for forecasts associated with predictions or values
+of independent variables that are extreme in both directions, although the
+effect should not be too dramatic.<span style='mso-spacerun:yes'>&nbsp;
+</span>What you hope <i style='mso-bidi-font-style:normal'>not</i> to see are
+errors that systematically get larger in one direction by a significant amount.</span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>How to
+fix:<span style='mso-spacerun:yes'>&nbsp; </span></span></b><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-bidi-font-weight:
+bold'>If the dependent variable is strictly positive and if the
+residual-versus-predicted plot shows that the size of the errors is
+proportional to the size of the predictions (i.e., if the errors seem
+consistent in percentage rather than absolute terms), a log transformation
+applied to the dependent variable may be appropriate.<span
+style='mso-spacerun:yes'>&nbsp; </span></span><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>In time series models, heteroscedasticity
+often arises due to the effects of inflation and/or real compound growth. Some
+combination of <i>logging and/or deflating</i> will often stabilize the
+variance in this case. Stock market data may show periods of increased or
+decreased volatility over time. This is normal and is often modeled with
+so-called ARCH (auto-regressive conditional heteroscedasticity) models in which
+the error variance is fitted by an autoregressive model. Such models are beyond
+the scope of this discussion, but a simple fix would be to work with shorter
+intervals of data in which volatility is more nearly constant.
+Heteroscedasticity can also be a byproduct of a significant violation of the
+linearity and/or independence assumptions, in which case it may also be fixed
+as a byproduct of fixing those problem.<span style='mso-spacerun:yes'>&nbsp;
+</span><o:p></o:p></span></p>
+
+<p><i style='mso-bidi-font-style:normal'><span style='font-size:10.0pt;
+font-family:"Verdana","sans-serif"'>Seasonal patterns</span></i><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'> in the data are a
+common source of heteroscedasticity in the errors:<span
+style='mso-spacerun:yes'>&nbsp; </span>unexplained variations in the dependent
+variable throughout the course of a season may be consistent in percentage
+rather than absolute terms, in which case larger errors will be made in seasons
+where activity is greater, which will show up as a seasonal pattern of changing
+variance on the residual-vs-time plot.<span style='mso-spacerun:yes'>&nbsp;
+</span>A log transformation is often used to address this problem.<span
+style='mso-spacerun:yes'>&nbsp; </span>For example, if the seasonal pattern is
+being modeled through the use of dummy variables for months or quarters of the
+year, a log transformation applied to the dependent variable will convert the
+coefficients of the dummy variables to multiplicative adjustment factors rather
+than additive adjustment factors, and the errors in predicting the logged
+variable will be (roughly) interpretable as percentage errors in predicting the
+original variable.<span style='mso-spacerun:yes'>&nbsp; </span>Seasonal adjustment
+of all the data prior to fitting the regression model might be another
+option.<span style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>If a log
+transformation has already been applied to a variable, then (as noted above) <i
+style='mso-bidi-font-style:normal'>additive</i> rather than multiplicative
+seasonal adjustment should be used, if it is an option that your software
+offers.<span style='mso-spacerun:yes'>&nbsp; </span>Additive seasonal
+adjustment is similar in principle to including dummy variables for seasons of
+the year.<span style='mso-spacerun:yes'>&nbsp; </span>Whether-or-not you should
+perform the adjustment outside the model rather than with dummies depends on
+whether you want to be able to study the seasonally adjusted data all by itself
+and on whether there are unadjusted seasonal patterns in some of the
+independent variables.<span style='mso-spacerun:yes'>&nbsp; </span>(The
+dummy-variable approach would address the latter problem.)<span
+style='mso-spacerun:yes'>&nbsp; </span><a href="#top">(Return to top of page.)</a></span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='mso-fareast-font-family:"Times New Roman"'>
+
+<hr size=2 width="100%" align=center>
+
+</span></div>
+
+<p><a name=normality></a><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Violations
+of normality</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+create problems for determining whether model coefficients are significantly different
+from zero and for calculating confidence intervals for forecasts. Sometimes the
+error distribution is &quot;skewed&quot; by the presence of a few large
+outliers. Since parameter estimation is based on the minimization of<i> squared</i>
+error, a few extreme observations can exert a disproportionate influence on
+parameter estimates. Calculation of confidence intervals and various
+significance tests for coefficients are all based on the assumptions of
+normally distributed errors. If the error distribution is significantly
+non-normal, confidence intervals may be too wide or too narrow. <o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Technically,
+the normal distribution assumption is not necessary if you are willing to
+assume the model equation is correct and your only goal is to estimate its
+coefficients and generate predictions in such a way as to minimize mean squared
+error.<span style='mso-spacerun:yes'>&nbsp; </span>The formulas for estimating
+coefficients require no more than that, and some references on regression
+analysis do not list normally distributed errors among the key
+assumptions.<span style='mso-spacerun:yes'>&nbsp; </span>But generally we are
+interested in making inferences about the model and/or estimating the
+probability that a given forecast error will exceed some threshold in a
+particular direction, in which case distributional assumptions are important.<span
+style='mso-spacerun:yes'>&nbsp; </span>Also, a significant violation of the
+normal distribution assumption is often a &quot;red flag&quot; indicating that
+there is some other problem with the model assumptions and/or that there are a
+few unusual data points that should be studied closely and/or that a better
+model is still waiting out there somewhere.</span><span style='font-family:
+"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>How to
+diagnose:</span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>
+the best test for normally distributed errors is a <b style='mso-bidi-font-weight:
+normal'><span style='mso-bidi-font-style:italic'>normal probability plot</span></b>
+or <b style='mso-bidi-font-weight:normal'>normal quantile plot</b><i
+style='mso-bidi-font-style:normal'> </i>of the residuals. These are plots of
+the fractiles of error distribution versus the fractiles of a normal distribution
+having the same mean and variance. If the distribution is normal, the points on
+such a plot should fall close to the diagonal reference line. A <i>bow-shaped</i>
+pattern of deviations from the diagonal indicates that the residuals have
+excessive<i> skewness</i> (i.e., they are not symmetrically distributed, with
+too many large errors in <i style='mso-bidi-font-style:normal'>one</i>
+direction). An S-shaped pattern of deviations indicates that the residuals have
+excessive <i>kurtosis</i>--i.e., there are either too many or two few large
+errors in <i style='mso-bidi-font-style:normal'>both</i> directions.<span
+style='mso-spacerun:yes'>&nbsp; </span>Sometimes the problem is revealed to be
+that there are a few data points on one or both ends that deviate significantly
+from the reference line (&quot;outliers&quot;), in which case they should get
+close attention.<span style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>There are
+also a variety of <b style='mso-bidi-font-weight:normal'>statistical tests for
+normality</b>, including the <a
+href="http://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test">Kolmogorov-Smirnov</a>
+test, the <a href="http://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test">Shapiro-Wilk</a>
+test, the <a href="http://en.wikipedia.org/wiki/Jarque%E2%80%93Bera_test">Jarque-Bera</a>
+test, and the <a
+href="http://en.wikipedia.org/wiki/Anderson%E2%80%93Darling_test">Anderson-Darling</a>
+test.<span style='mso-spacerun:yes'>&nbsp; </span>The Anderson-Darling test
+(which is the one used by RegressIt) is generally considered to be the best,
+because it is specific to the normal distribution (unlike the K-S test) and it
+looks at the whole distribution rather than just the skewness and kurtosis
+(like the J-B test).<span style='mso-spacerun:yes'>&nbsp; </span>But all of
+these tests are excessively &quot;picky&quot; in this author&#8217;s
+opinion.<span style='mso-spacerun:yes'>&nbsp; </span>Real data rarely has
+errors that are perfectly normally distributed, and it may not be possible to
+fit your data with a model whose errors do not violate the normality assumption
+at the 0.05 level of significance.<span style='mso-spacerun:yes'>&nbsp;
+</span>It is usually better to focus more on violations of the other
+assumptions and/or the influence of a few outliers (which may be mainly
+responsible for violations of normality anyway) and to look at a normal
+probability plot or normal quantile plot and draw your own conclusions about whether
+the problem is serious and whether it is systematic.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Here is an
+example of a bad-looking normal quantile plot (an S-shaped pattern with P=0 for
+the A-D stat, indicating highly significant non-normality) from the <a
+href="http://people.duke.edu/~rnau/regex2.htm">beer sales analysis on this web
+site</a>:<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif";mso-no-proof:
+yes'><!--[if gte vml 1]><v:shape id="Picture_x0020_1" o:spid="_x0000_i1036"
+ type="#_x0000_t75" style='width:399.75pt;height:189.75pt;visibility:visible;
+ mso-wrap-style:square'>
+ <v:imagedata src="testing_files/image001.jpg" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=533 height=253
+src="testing_files/image002.jpg" v:shapes="Picture_x0020_1"><![endif]></span><span
+style='font-size:10.0pt;font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>&#8230;and
+here is an example of a good-looking one (a linear pattern with P=0.5 for the
+A-D stat, indicating no significant departure from normality):<o:p></o:p></span></p>
+
+<p><span style='font-family:"Verdana","sans-serif";mso-no-proof:yes'><!--[if gte vml 1]><v:shape
+ id="Picture_x0020_3" o:spid="_x0000_i1035" type="#_x0000_t75" style='width:393.75pt;
+ height:203.25pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="testing_files/image005.jpg" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=525 height=271
+src="testing_files/image005.jpg" v:shapes="Picture_x0020_3"><![endif]></span><span
+style='font-family:"Verdana","sans-serif"'><o:p></o:p></span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>How to
+fix: </span></b><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>violations
+of normality often arise either because (a) the <i>distributions of the
+dependent and/or independent variables</i> are themselves significantly non-normal,
+and/or (b) the <i>linearity assumption</i> is violated. In such cases, a
+nonlinear transformation of variables might cure both problems. In the case of
+the two normal quantile plots above, the second model was obtained applying a
+natural log transformation to the variables in the first one.<span
+style='mso-spacerun:yes'>&nbsp; </span><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>The
+dependent and independent variables in a regression model do not need to be
+normally distributed by themselves--only the prediction errors need to be
+normally distributed.<span style='mso-spacerun:yes'>&nbsp; </span>(In fact,
+independent variables do not even need to be random, as in the case of trend or
+dummy or treatment or pricing variables.)<span style='mso-spacerun:yes'>&nbsp;
+</span>But if the distributions of some of the variables that <i
+style='mso-bidi-font-style:normal'>are</i> random are extremely asymmetric or
+long-tailed, it may be hard to fit them into a linear model whose errors will
+be normally distributed, and explaining the shape of their distributions may be
+an interesting topic all by itself.<span style='mso-spacerun:yes'>&nbsp;
+</span>Keep in mind that the normal error assumption is usually justified by
+appeal to the central limit theorem, which holds in the case where many random
+variations are added together.<span style='mso-spacerun:yes'>&nbsp; </span>If
+the underlying sources of randomness are not interacting additively, this
+argument fails to hold.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>Another
+possibility is that there are two or more <i style='mso-bidi-font-style:normal'>subsets</i>
+of the data having <i style='mso-bidi-font-style:normal'>different statistical
+properties</i>, in which case separate models should be built, or else some
+data should merely be excluded, provided that there is some a priori criterion
+that can be applied to make this determination.<o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'>In some
+cases, the problem with the error distribution is mainly due to <i>one or two
+very large errors</i>. Such values should be scrutinized closely: are they <i>genuine</i>
+(i.e., not the result of data entry errors), are they <i>explainable</i>, are <i>similar
+events </i>likely to occur again in the future, and how <i>influential</i> are
+they in your model-fitting results? If they are merely errors or if they can be
+explained as unique events not likely to be repeated, then you may have cause
+to remove them. In some cases, however, it may be that the extreme values in
+the data provide the most useful information about values of some of the
+coefficients and/or provide the most realistic guide to the magnitudes of
+forecast errors.<span style='mso-spacerun:yes'>&nbsp; </span><a href="#top">(Return
+to top of page.)</a><o:p></o:p></span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Verdana","sans-serif"'><a
+href="http://people.duke.edu/~rnau/regnotes.htm">Go on to next topic:<span
+style='mso-spacerun:yes'>&nbsp; </span>Additional notes on regression analysis</a><o:p></o:p></span></p>
+
+<div class=MsoNormal align=center style='text-align:center'><span
+style='mso-fareast-font-family:"Times New Roman"'>
+
+<hr size=2 width="100%" align=center>
+
+</span></div>
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=9813276; 
+var sc_invisible=1; 
+var sc_security="05193237"; 
+var sc_https=1; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="http://c.statcounter.com/9813276/0/05193237/1/"
+alt="web analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+</body>
+
+</html>
